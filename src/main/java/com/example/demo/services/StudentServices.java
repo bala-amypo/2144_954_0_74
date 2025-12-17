@@ -13,6 +13,7 @@ public class StudentServices{
     }
     public StudentEntity getById(int id){
         return details.get(id);
+        
     }
     public Collection<StudentEntity> getAll(){
         return details.values();
