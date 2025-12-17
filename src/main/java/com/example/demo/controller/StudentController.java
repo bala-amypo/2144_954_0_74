@@ -19,5 +19,13 @@ public class StudentController{
         return src.getAll();
     }
     @PutMapping("/update/{id}")
-    public StudentEntity updateStudent(@PathVariable int id,@Re)
+    public StudentEntity updateStudent(@PathVariable int id,@RequestBody StudentEntity st){
+        StudentEntity updated=src.updateStudent(id,st);
+        if(updated!=null){
+            return updated;
+        }
+        else{
+            throw new RuntimeException("Student with ID "+id+" not found");
+        }
+    }
 }
