@@ -16,25 +16,21 @@ public class StudentController {
     @Autowired
     private StudentServices src;
 
-    // ADD STUDENT
     @PostMapping("/add")
     public StudentEntity addStudent(@RequestBody StudentEntity st) {
         return src.insertStudent(st);
     }
 
-    // GET ALL STUDENTS
     @GetMapping("/all")
     public List<StudentEntity> getAllStudents() {
         return src.getAllStudents();
     }
 
-    // GET ONE STUDENT BY ID
     @GetMapping("/{id}")
     public Optional<StudentEntity> getStudent(@PathVariable Long id) {
         return src.getOneStudent(id);
     }
 
-    // DELETE STUDENT
     @DeleteMapping("/delete/{id}")
     public String deleteStudent(@PathVariable Long id) {
         src.deleteStudent(id);
