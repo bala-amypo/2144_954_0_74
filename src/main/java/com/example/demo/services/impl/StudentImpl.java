@@ -17,5 +17,11 @@ public class StudentImpl implements StudentServices{
         return new ArrayList<>(store.values());
     }
     @Override
-    public Optional<StudentEntity>
+    public Optional<StudentEntity> getOneStudent(Long id){
+        return Optional.ofNullable(store.get(id));
+    }
+    @Override
+    public void deleteStudent(Long id){
+        store.remove(id);
+    }
 }
