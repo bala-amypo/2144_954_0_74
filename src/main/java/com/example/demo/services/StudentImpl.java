@@ -1,4 +1,4 @@
-package com.example.demo.services.impl;
+package com.example.demo.services;
 import java.util.*;
 import org.springframework.stereotype.Service;
 import com.example.demo.entity.StudentEntity;
