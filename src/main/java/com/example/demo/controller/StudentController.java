@@ -1,32 +1,43 @@
-
 package com.example.demo.controller;
-import java.util.Collection;
+
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import com.example.demo.entity.StudentEntity;
 import com.example.demo.services.StudentServices;
 
 @RestController
 @RequestMapping("/student")
-public class StudentController{
+public class StudentController {
+
     @Autowired
-    StudentServices src;
+    private StudentServices src;
+
+    // ADD STUDENT
     @PostMapping("/add")
-    public StudentEntity addStudent(@RequestBody StudentEntity st){
-        return src.saveData(st);
+    public StudentEntity addStudent(@RequestBody StudentEntity st) {
+        return src.insertStudent(st);
     }
+
+    // GET ALL STUDENTS
+    @GetMapping("/all")
+    public List<StudentEntity> getAllStudents() {
+        return src.getAllStudents();
+    }
+
+    // GET ONE STUDENT BY ID
     @GetMapping("/{id}")
-    public StudentEntity getStudent(@PathVariable int id){
-        return src.getAll();
+    public Optional<StudentEntity> getStudent(@PathVariable Long id) {
+        return src.getOneStudent(id);
     }
-    @PutMapping("/update/{id}")
-    public StudentEntity updateStudent(@PathVariable int id,@RequestBody StudentEntity st){
-        StudentEntity updated=src.updateStudent(id,st);
-        if(updated!=null){
-            return updated;
-        }
-        else{
-            throw new RuntimeException("Student with ID "+id+" not found");
-        }
+
+    // DELETE STUDENT
+    @DeleteMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable Long id) {
+        src.deleteStudent(id);
+        return "Student deleted successfully";
     }
 }
