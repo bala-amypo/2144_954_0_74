@@ -27,6 +27,6 @@ public class StudentEntity{
         return email;
     }
     public void setEmail(String email){
-        
+        this.email=email;
     }
 }
