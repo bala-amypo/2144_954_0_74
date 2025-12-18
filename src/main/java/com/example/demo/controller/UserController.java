@@ -37,13 +37,13 @@ public class UserController {
             UserEntity user = userOpt.get();
             user.setName(st.getName());
             user.setEmail(st.getEmail());
-            user.setCgpa(st.getCgpa());
-            user.setDob(st.getDob());
+            user.setPassword(st.getPassword());
+            user.setRole(st.getRole());
 
             userService.insertUser(user);
             return "Updated Successfully";
         }
-        return "Student Not Found";
+        return "User Not Found";
     }
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable Long id) {
@@ -53,6 +53,6 @@ public class UserController {
             userService.deleteUser(id);
             return "Deleted Successfully";
         }
-        return "Student Not Found";
+        return "User Not Found";
     }
 }
