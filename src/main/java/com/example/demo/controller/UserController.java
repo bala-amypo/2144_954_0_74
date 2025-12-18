@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.Entity.UserEntity;
+import com.example.demo.entity.UserEntity;
 import com.example.demo.services.UserServices;
 
 @RestController

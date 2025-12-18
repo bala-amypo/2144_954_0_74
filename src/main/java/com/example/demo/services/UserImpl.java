@@ -4,7 +4,7 @@ import java.util.*;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.Entity.UserEntity;
+import com.example.demo.entity.UserEntity;
 
 @Service
 public class UserImpl implements UserServices {
