@@ -32,7 +32,7 @@ public class UserController {
     @PutMapping("/{id}")
     public String updateUser(@PathVariable Long id, @RequestBody UserEntity st) {
         Optional<UserEntity> userOpt = userService.getOneUser(id);
-
+  
         if (userOpt.isPresent()) {
             UserEntity user = userOpt.get();
             user.setName(st.getName());
