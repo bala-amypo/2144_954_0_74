@@ -11,7 +11,8 @@ import com.example.demo.services.UserServices;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    private final UserServices userService;
+    private final UserServices userSer
+    vice;
     public UserController(UserServices userService) {
         this.userService = userService;
     }
