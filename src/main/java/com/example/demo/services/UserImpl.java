@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.UserEntity;
 
 @Service
-public class UserImpl implements UserService {
+public class UserImpl implements UserServices {
 
     private final Map<Long, UserEntity> store = new HashMap<>();
     private long counter = 1;
@@ -18,17 +18,17 @@ public class UserImpl implements UserService {
     }
 
     @Override
-    public List<UserEntity> getAllStudents() {
+    public List<UserEntity> getAllUser() {
         return new ArrayList<>(store.values());
     }
 
     @Override
-    public Optional<Student> getOneStudent(Long id) {
+    public Optional<UserEntity> getOneUser(Long id) {
         return Optional.ofNullable(store.get(id));
     }
 
     @Override
-    public void deleteStudent(Long id) {
+    public void deleteUser(Long id) {
         store.remove(id);
     }
 }
