@@ -2,15 +2,16 @@ package com.example.demo.services;
 
 import java.util.List;
 import java.util.Optional;
-import com.example.demo.entity.UserEntity;
 
-public interface UserService {
+import com.example.demo.Entity.UserEntity;
 
-    UserEntity insertUser(UserEntity st);
+public interface UserServices {
+
+    UserEntity insertUser(UserEntity user);
 
     List<UserEntity> getAllUser();
 
     Optional<UserEntity> getOneUser(Long id);
-
+    
     void deleteUser(Long id);
 }

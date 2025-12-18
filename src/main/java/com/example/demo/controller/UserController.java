@@ -5,54 +5,57 @@ import java.util.Optional;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.entity.UserEntity;
-import com.example.demo.service.UserServices;
+import com.example.demo.Entity.UserEntity;
+import com.example.demo.services.UserServices;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
     private final UserServices userService;
-
     public UserController(UserServices userService) {
         this.userService = userService;
     }
     @PostMapping
-    public UserEntity postUser(@RequestBody UserEntity st) {
-        return userService.insertUser(st);
+    public UserEntity createUser(@RequestBody UserEntity user) {
+        return userService.insertUser(user);
     }
     @GetMapping
-    public List<UserEntity> getAll() {
+    public List<UserEntity> getAllUsers() {
         return userService.getAllUser();
     }
     @GetMapping("/{id}")
-    public Optional<UserEntity> getById(@PathVariable Long id) {
+    public Optional<UserEntity> getUserById(@PathVariable Long id) {
         return userService.getOneUser(id);
     }
     @PutMapping("/{id}")
-    public String updateUser(@PathVariable Long id, @RequestBody UserEntity st) {
-        Optional<UserEntity> userOpt = userService.getOneUser(id);
-  
-        if (userOpt.isPresent()) {
-            UserEntity user = userOpt.get();
-            user.setName(st.getName());
-            user.setEmail(st.getEmail());
-            user.setPassword(st.getPassword());
-            user.setRole(st.getRole());
+    public String updateUser(@PathVariable Long id, @RequestBody UserEntity userData) {
+
+        Optional<UserEntity> existingUser = userService.getOneUser(id);
+
+        if (existingUser.isPresent()) {
+            UserEntity user = existingUser.get();
+
+            user.setName(userData.getName());
+            user.setEmail(userData.getEmail());
+            user.setPassword(userData.getPassword());
+            user.setRole(userData.getRole());
 
             userService.insertUser(user);
-            return "Updated Successfully";
+            return "User Updated Successfully";
         }
+
         return "User Not Found";
     }
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable Long id) {
+
         Optional<UserEntity> user = userService.getOneUser(id);
 
         if (user.isPresent()) {
             userService.deleteUser(id);
-            return "Deleted Successfully";
+            return "User Deleted Successfully";
         }
+
         return "User Not Found";
     }
 }
