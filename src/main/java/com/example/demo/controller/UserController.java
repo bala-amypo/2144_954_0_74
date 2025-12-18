@@ -28,33 +28,31 @@ public class UserController {
         return userService.getAllUser();
     }
     @GetMapping("/{id}")
-    public Optional<Student> getById(@PathVariable Long id) {
-        return studentService.getOneUser(id);
+    public Optional<UserEntity> getById(@PathVariable Long id) {
+        return userService.getOneUser(id);
     }
     @PutMapping("/{id}")
-    public String updateStudent(@PathVariable Long id, @RequestBody Student st) {
-        Optional<Student> studentOpt = studentService.getOneStudent(id);
+    public String updateUser(@PathVariable Long id, @RequestBody UserEntity st) {
+        Optional<UserEntity> userOpt = userService.getOneUser(id);
 
-        if (studentOpt.isPresent()) {
-            Student student = studentOpt.get();
-            student.setName(st.getName());
-            student.setEmail(st.getEmail());
-            student.setCgpa(st.getCgpa());
-            student.setDob(st.getDob());
+        if (userOpt.isPresent()) {
+            UserEntity user = userOpt.get();
+            user.setName(st.getName());
+            user.setEmail(st.getEmail());
+            user.setCgpa(st.getCgpa());
+            user.setDob(st.getDob());
 
-            studentService.insertStudent(student);
+            userService.insertUser(user);
             return "Updated Successfully";
         }
         return "Student Not Found";
     }
-
-    // DELETE
     @DeleteMapping("/{id}")
-    public String deleteStudent(@PathVariable Long id) {
-        Optional<User> user = studentService.getOneStudent(id);
+    public String deleteUser(@PathVariable Long id) {
+        Optional<UserEntity> user = userService.getOneUser(id);
 
-        if (student.isPresent()) {
-            studentService.deleteStudent(id);
+        if (user.isPresent()) {
+            userService.deleteUser(id);
             return "Deleted Successfully";
         }
         return "Student Not Found";
