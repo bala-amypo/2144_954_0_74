@@ -1,8 +1,10 @@
 package com.example.demo.services;
 
 import java.util.*;
+
 import org.springframework.stereotype.Service;
-import com.example.demo.entity.UserEntity;
+
+import com.example.demo.Entity.UserEntity;
 
 @Service
 public class UserImpl implements UserServices {
@@ -11,10 +13,13 @@ public class UserImpl implements UserServices {
     private long counter = 1;
 
     @Override
-    public UserEntity insertUser(UserEntity st) {
-        st.setId(counter++);
-        store.put(st.getId(), st);
-        return st;
+    public UserEntity insertUser(UserEntity user) {
+      
+        if (user.getId() == null) {
+            user.setId(counter++);
+        }
+        store.put(user.getId(), user);
+        return user;
     }
 
     @Override
